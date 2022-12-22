@@ -1,23 +1,16 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
-import React, {useState} from 'react';
+import React, {useState, FC} from 'react';
 import {Text, Animated, View, TouchableOpacity} from 'react-native';
+import FadeInFadeOut from './animations/FadeInFadeOut';
+import PanResponder from './animations/PanResponder';
 
 //Notes
 // getLayout is available for ValueXY only
-// useNativeDriver doesn't support some properties available in JS thread like margins
+// useNativeDriver doesn't support some properties available in JS thread like margins, we use tranform property
+// for this purpose
 // react native has two threads UI thread (main) and JS thread, originally its single thread
 //useNativeDriver as much as possible to run smooth animations
 
-const App = () => {
+const App: FC = () => {
   // const values = useState(new Animated.ValueXY({x: 0, y: 0}))[0];
   const leftValue = useState(new Animated.Value(0))[0];
 
@@ -32,9 +25,9 @@ const App = () => {
 
     // right animation func
     Animated.timing(leftValue, {
-      toValue: 1,
-      duration: 4000,
-      useNativeDriver: false,
+      toValue: 300,
+      duration: 3000,
+      useNativeDriver: true,
     }).start();
 
     setTimeout(() => {
@@ -43,7 +36,7 @@ const App = () => {
   };
 
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    <View style={{flex: 1}}>
       {/* <Animated.View style={values.getLayout()}>
         <View
           style={{
@@ -57,7 +50,7 @@ const App = () => {
       <TouchableOpacity onPress={moveBallHandler}>
         <Text> Move me </Text>
       </TouchableOpacity> */}
-
+      {/* 
       <Animated.View
         style={{
           width: 100,
@@ -65,12 +58,25 @@ const App = () => {
           borderRadius: 100 / 2,
           opacity: leftValue,
           backgroundColor: 'green',
-        }}>
-        <View />
-      </Animated.View>
+        }}
+      /> */}
+
+      <Animated.View
+        style={{
+          width: 100,
+          height: 100,
+          borderRadius: 100 / 2,
+          transform: [{translateX: leftValue}],
+          backgroundColor: 'green',
+        }}
+      />
+
       <TouchableOpacity onPress={moveBallHandler}>
         <Text> Move me </Text>
       </TouchableOpacity>
+
+      {/* <FadeInFadeOut /> */}
+      <PanResponder />
     </View>
   );
 };
