@@ -2,6 +2,7 @@ import React, {useState, FC} from 'react';
 import {Text, Animated, View, TouchableOpacity} from 'react-native';
 import FadeInFadeOut from './animations/FadeInFadeOut';
 import PanResponder from './animations/PanResponder';
+import PanResponderTransform from './animations/PanResponderTransform';
 
 //Notes
 // getLayout is available for ValueXY only
@@ -76,7 +77,8 @@ const App: FC = () => {
       </TouchableOpacity>
 
       {/* <FadeInFadeOut /> */}
-      <PanResponder />
+      {/* <PanResponder /> */}
+      <PanResponderTransform />
     </View>
   );
 };
