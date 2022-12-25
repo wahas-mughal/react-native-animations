@@ -1,5 +1,6 @@
 import React, {useState, FC} from 'react';
 import {Text, Animated, View, TouchableOpacity} from 'react-native';
+import DropdownAnimations from './animations/DropdownAnimations';
 import FadeInFadeOut from './animations/FadeInFadeOut';
 import PanResponder from './animations/PanResponder';
 import PanResponderTransform from './animations/PanResponderTransform';
@@ -62,7 +63,7 @@ const App: FC = () => {
         }}
       /> */}
 
-      <Animated.View
+      {/* <Animated.View
         style={{
           width: 100,
           height: 100,
@@ -74,11 +75,12 @@ const App: FC = () => {
 
       <TouchableOpacity onPress={moveBallHandler}>
         <Text> Move me </Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
       {/* <FadeInFadeOut /> */}
       {/* <PanResponder /> */}
-      <PanResponderTransform />
+      {/* <PanResponderTransform /> */}
+      <DropdownAnimations />
     </View>
   );
 };
