@@ -8,22 +8,69 @@ import {
   Animated,
   Easing,
 } from 'react-native';
-import React, {FC, useState} from 'react';
+import React, {FC, useState, useEffect} from 'react';
 
 const DropdownAnimations: FC = () => {
+  const [iconDrop, setIconDrop] = useState(false);
+  const [gender, setGender] = useState('Male');
   const dropdownIconRotate = useState(new Animated.Value(0))[0];
   const dropdownOptions = useState(new Animated.Value(0))[0];
+  const dropdownOptionsOpacity = useState(new Animated.Value(0))[0];
 
   //rotate the icon
   const rotateIconHandler = () => {
-    console.log('pressed');
-    Animated.timing(dropdownIconRotate, {
-      toValue: 1,
-      duration: 400,
-      easing: Easing.linear,
-      useNativeDriver: true,
-    }).start();
+    setIconDrop(!iconDrop);
   };
+
+  const dropdownAnimations = () => {
+    if (iconDrop) {
+      Animated.timing(dropdownIconRotate, {
+        toValue: 1,
+        duration: 300,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      }).start();
+
+      Animated.timing(dropdownOptions, {
+        toValue: 15,
+        duration: 300,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      }).start();
+
+      Animated.timing(dropdownOptionsOpacity, {
+        toValue: 1,
+        duration: 300,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      }).start();
+    } else {
+      Animated.timing(dropdownIconRotate, {
+        toValue: 0,
+        duration: 300,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      }).start();
+
+      Animated.timing(dropdownOptions, {
+        toValue: 0,
+        duration: 300,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      }).start();
+
+      Animated.timing(dropdownOptionsOpacity, {
+        toValue: 0,
+        duration: 300,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      }).start();
+    }
+  };
+
+  useEffect(() => {
+    dropdownAnimations();
+  }, [iconDrop]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -31,7 +78,7 @@ const DropdownAnimations: FC = () => {
         <Text style={{fontWeight: 'bold', fontSize: 16}}>Gender</Text>
       </View>
       <Pressable style={styles.dropdown} onPress={rotateIconHandler}>
-        <Text> Male</Text>
+        <Text> {gender} </Text>
         <Animated.Image
           source={require('../assets/icons/left-arrow.png')}
           style={{
@@ -48,16 +95,23 @@ const DropdownAnimations: FC = () => {
           }}
         />
       </Pressable>
-      <View style={styles.dropdownOptions}>
-        <Pressable>
+      <Animated.View
+        style={[
+          styles.dropdownOptions,
+          {
+            transform: [{translateY: dropdownOptions}],
+            opacity: dropdownOptionsOpacity,
+          },
+        ]}>
+        <Pressable onPress={() => setGender('Male')}>
           <Text style={{textDecorationLine: 'underline', marginBottom: 5}}>
             Male
           </Text>
         </Pressable>
-        <Pressable>
+        <Pressable onPress={() => setGender('Female')}>
           <Text style={{textDecorationLine: 'underline'}}>Female</Text>
         </Pressable>
-      </View>
+      </Animated.View>
     </SafeAreaView>
   );
 };
@@ -88,7 +142,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderColor: '#777',
     borderWidth: 1,
-    marginTop: 12,
+    marginTop: -5,
     borderRadius: 8,
   },
 });
