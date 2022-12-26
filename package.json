@@ -10,12 +10,14 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "faker": "^6.6.6",
     "react": "18.1.0",
     "react-native": "0.70.6"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
+    "@faker-js/faker": "^7.6.0",
     "@react-native-community/eslint-config": "^2.0.0",
     "@tsconfig/react-native": "^2.0.2",
     "@types/jest": "^26.0.23",

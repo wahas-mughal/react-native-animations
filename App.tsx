@@ -4,6 +4,7 @@ import DropdownAnimations from './animations/DropdownAnimations';
 import FadeInFadeOut from './animations/FadeInFadeOut';
 import PanResponder from './animations/PanResponder';
 import PanResponderTransform from './animations/PanResponderTransform';
+import ScrollListAnimations from './animations/ScrollListAnimations';
 
 //Notes
 // getLayout is available for ValueXY only
@@ -80,7 +81,8 @@ const App: FC = () => {
       {/* <FadeInFadeOut /> */}
       {/* <PanResponder /> */}
       {/* <PanResponderTransform /> */}
-      <DropdownAnimations />
+      {/* <DropdownAnimations /> */}
+      <ScrollListAnimations />
     </View>
   );
 };
