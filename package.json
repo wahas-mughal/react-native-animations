@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "startiPhone11": "npx react-native run-ios --udid 93F69348-A011-4744-AAF5-73CF72B84A2C",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",

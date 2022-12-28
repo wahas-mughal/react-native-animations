@@ -2,6 +2,7 @@ import React, {useState, FC} from 'react';
 import {Text, Animated, View, TouchableOpacity} from 'react-native';
 import DropdownAnimations from './animations/DropdownAnimations';
 import FadeInFadeOut from './animations/FadeInFadeOut';
+import GallerySliders from './animations/GallerySlides';
 import PanResponder from './animations/PanResponder';
 import PanResponderTransform from './animations/PanResponderTransform';
 import ScrollListAnimations from './animations/ScrollListAnimations';
@@ -82,7 +83,8 @@ const App: FC = () => {
       {/* <PanResponder /> */}
       {/* <PanResponderTransform /> */}
       {/* <DropdownAnimations /> */}
-      <ScrollListAnimations />
+      {/* <ScrollListAnimations /> */}
+      <GallerySliders />
     </View>
   );
 };
